@@ -1,0 +1,1 @@
+FROM defreitas/dns-proxy-server

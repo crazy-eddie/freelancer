@@ -1,0 +1,5 @@
+FROM alpine
+
+# set up apk to use proxy by setting environment variable:
+# ENV HTTP_PROXY=http://proxy:3128
+

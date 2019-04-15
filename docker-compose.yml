@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+
+  container-dns:
+    image: registry:5000/freelancer/dns
+    build: ./dns
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/resolv.conf:/etc/resolv.conf
+    hostname: container-dns
+
+  registry:
+    image: registry:5000/freelancer/registry
+    build: ./registry
+    hostname: registry
+    volumes:
+      - /opt/data-volumes/docker-cache:/var/lib/registry
+
+  
