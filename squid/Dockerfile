@@ -1,5 +1,5 @@
 
-FROM registry.flncr/base:alpine
+FROM registry:5000/freelancer/base:alpine
 
 RUN apk add squid
 RUN echo "maximum_object_size 1024 MB" >> /etc/squid/squid.conf \

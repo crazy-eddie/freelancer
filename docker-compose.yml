@@ -16,4 +16,54 @@ services:
     volumes:
       - /opt/data-volumes/docker-cache:/var/lib/registry
 
+
+  proxy:
+    image: registry:5000/freelancer/proxy
+    build: ./squid
+    hostname: proxy
+    volumes:
+      - squid-cache:/squid-data
+
+  # build - jenkins
+  # planner - tuleap
+  # git - gitea?
+  # identities - home volumes + gpg-agent/ssh-agents
+  crazy-eddie:
+    image: registry:5000/freelancer/identity
+    build: ./identity
+    volumes:
+      - crazy-eddie:/home/identity
+  
+  professional:
+    image: registry:5000/freelancer/identity
+    build: ./identity
+    volumes:
+      - professional:/home/identity
+  # project-workspaces
+  #    code-server
+
+  neurocommander:
+    image: registry:5000/freelancer/code-server
+    build: ./code-server
+    hostname: neurocommander
+    volumes:
+      - professional:/home/developer
+      - neurocommander:/work
+
+  freelancer:
+    image: registry:5000/freelancer/code-server
+    build: ./code-server
+    hostname: freelancer
+    volumes:
+      - crazy-eddie:/home/developer
+      - freelancer:/work
+
+
+volumes:
+  squid-cache:
+  crazy-eddie:
+  professional:
+  neurocommander:
+  freelancer:
+
   
